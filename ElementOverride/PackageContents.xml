@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ApplicationPackage SchemaVersion="1.0" AutodeskProduct="Revit" 
+					Name="ElementOverride" 
+					Description="It helps you manage your project sheets easily in a smart way." 
+					AppVersion="1.0.0" 
+					FriendlyVersion="1.0.0" 
+					ProductType="Application" 
+					SupportedLocales="Enu" 
+					Author="AEC Spot" 
+					ProductCode="{2E65F645-9617-4EC6-B171-6004634654A3}" 
+					UpgradeCode="{2E65F645-9617-4EC6-B171-6004634654A3}" 
+					>
+  <CompanyDetails Name="AEC Spot" />
+  <RuntimeRequirements OS="Win64" Platform="Revit" SeriesMin="R2018" SeriesMax="R2025" />
+  <Components Description="2018">
+    <RuntimeRequirements OS="Win64" Platform="Revit" SeriesMin="R2018" SeriesMax="R2018" />
+    <ComponentEntry AppName="ElementOverride" Version="1.0.0" ModuleName="./Contents/2018/ElementOverride.addin" AppDescription="AECSpot" />
+  </Components>
+  <Components Description="2019">
+    <RuntimeRequirements OS="Win64" Platform="Revit" SeriesMin="R2019" SeriesMax="R2019" />
+	  <ComponentEntry AppName="ElementOverride" Version="1.0.0" ModuleName="./Contents/2019/ElementOverride.addin" AppDescription="AECSpot" />
+  </Components>
+  <Components Description="2020">
+    <RuntimeRequirements OS="Win64" Platform="Revit" SeriesMin="R2020" SeriesMax="R2020" />
+	  <ComponentEntry AppName="ElementOverride" Version="1.0.0" ModuleName="./Contents/2020/ElementOverride.addin" AppDescription="AECSpot" />
+  </Components>
+  <Components Description="2021">
+    <RuntimeRequirements OS="Win64" Platform="Revit" SeriesMin="R2021" SeriesMax="R2021" />
+	  <ComponentEntry AppName="ElementOverride" Version="1.0.0" ModuleName="./Contents/2021/ElementOverride.addin" AppDescription="AECSpot" />
+  </Components>
+  <Components Description="2022">
+    <RuntimeRequirements OS="Win64" Platform="Revit" SeriesMin="R2022" SeriesMax="R2022" />
+	  <ComponentEntry AppName="ElementOverride" Version="1.0.0" ModuleName="./Contents/2022/ElementOverride.addin" AppDescription="AECSpot" />
+  </Components>
+	<Components Description="2023">
+		<RuntimeRequirements OS="Win64" Platform="Revit" SeriesMin="R2023" SeriesMax="R2023" />
+		<ComponentEntry AppName="ElementOverride" Version="1.0.0" ModuleName="./Contents/2023/ElementOverride.addin" AppDescription="AECSpot" />
+	</Components>
+	<Components Description="2024">
+		<RuntimeRequirements OS="Win64" Platform="Revit" SeriesMin="R2024" SeriesMax="R2024" />
+		<ComponentEntry AppName="ElementOverride" Version="1.0.0" ModuleName="./Contents/2024/ElementOverride.addin" AppDescription="AECSpot" />
+	</Components>
+	<Components Description="2025">
+		<RuntimeRequirements OS="Win64" Platform="Revit" SeriesMin="R2025" SeriesMax="R2025" />
+		<ComponentEntry AppName="ElementOverride" Version="1.0.0" ModuleName="./Contents/2025/ElementOverride.addin" AppDescription="AECSpot" />
+	</Components>
+</ApplicationPackage>

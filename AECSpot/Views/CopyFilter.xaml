@@ -1,0 +1,558 @@
+﻿<Window x:Name="window" x:Class="AECSpot.CopyFilter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:tk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:AECSpot"
+        
+        
+        mc:Ignorable="d"
+        Height="750"
+        MinHeight="400"
+        Width="850"
+        MinWidth="600"
+        Background="#F7F7F7"
+        WindowStyle="None"
+        ResizeMode="CanResize" WindowStartupLocation="CenterOwner"
+        
+        >
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="5"></WindowChrome>
+    </WindowChrome.WindowChrome>
+    <Window.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary  Source="pack://application:,,,/AECSpot;component/Dictionaries/ApplicationDictionary.xaml"></ResourceDictionary>
+                
+            </ResourceDictionary.MergedDictionaries>
+        <local:TreeViewElement x:Key="treeViewElement"/>
+        </ResourceDictionary>
+
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!-- Custom Title Bar -->
+        <Border Background=" #E3E3E3"   Height="40" VerticalAlignment="Center" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Margin="10 0 0 0" Grid.Column="0" Orientation="Horizontal">
+                    <Image Width="20" Height="20" Source="/AECSpot;component/Resources/AEC Spot Logo 3.png" />
+
+
+                    <TextBlock Text="AEC Spot - Transfer Filters" 
+                           Foreground="Black" VerticalAlignment="Center" Margin="10,0,0,0"  FontSize="15"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1"
+            Orientation="Horizontal" 
+                    HorizontalAlignment="Right" >
+
+
+                    <!-- Minimize Button -->
+                    <Button 
+                    
+                    Style="{StaticResource TitlebarButton}"
+                    Click="MinimizeButton_Click"
+                    Tag="/AECSpot;component/Resources/Images/minimize.png"
+                    >
+                        <!--<Image Source="/AECSpot;component/Resources/Images/minimize.png" />-->
+
+
+
+
+                    </Button>
+
+                    <!-- Maximize Button -->
+                    <Button Margin="20 0 20 0" 
+                        Style="{StaticResource TitlebarButton}"
+                        Click="MaximizeButton_Click"
+                       Tag="/AECSpot;component/Resources/Images/Vector (2).png"
+
+                        >
+
+                        <!--<Image  Source="/AECSpot;component/Resources/Images/Vector (2).png" />-->
+
+                    </Button>
+
+                    <!-- Close Button -->
+                    <Button   Style="{StaticResource TitlebarButton}"
+                         Click="CloseButton_Click"
+                          Margin="0 0 30 0"
+                         Tag="/AECSpot;component/Resources/Images/Vector (1).png"
+                            
+                       >
+                        <!--<Image  Source="/AECSpot;component/Resources/Images/Vector (1).png" />-->
+
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Body -->
+
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="350*" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="350*" />
+            </Grid.ColumnDefinitions>
+
+
+            <Border Grid.Column="0" Background="White" BorderThickness="0.5" BorderBrush="Gray">
+
+                <Grid Margin="10 10 10 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"></RowDefinition>
+                        <RowDefinition Height="35"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0"
+                        Margin="5 0 0 0"
+                                 FontSize="18"
+                                 VerticalAlignment="Center" >View Filters</TextBlock>
+
+                    <ComboBox 
+                                Style="{StaticResource  CustomComboBoxStyle}"
+                              Grid.Column="1" 
+                              Grid.Row="0"
+                             Width="90" 
+                              Height="25"
+                              HorizontalAlignment="Right"
+                              VerticalAlignment="Center"
+                              Foreground="{StaticResource MainDarkGrey}"
+                              FontSize="13"
+                              VerticalContentAlignment="Center"
+                              HorizontalContentAlignment="Center"
+                              x:Name="FilterComboBox"
+                              SelectionChanged="ComboBox_SelectionChanged" 
+                                      >
+                        <ComboBoxItem IsSelected="True" >
+                            Default
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            A-Z
+                        </ComboBoxItem>
+
+                    </ComboBox>
+
+
+
+                    <Border 
+                       
+                       VerticalAlignment="Stretch"
+                       Height="30"
+                       Margin="5 0 0 0"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="2"
+                        >
+                        <Border.Style>
+                            <Style TargetType="Border">
+
+                                <Style.Triggers>
+                                    <!-- Trigger to change the BorderBrush when the mouse is over the WatermarkTextBox or the Border -->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="BorderBrush" Value="Yellow" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+
+                        <Grid VerticalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <tk:WatermarkTextBox x:Name="watermarkTextBox" 
+                                                 Style="{StaticResource ResourceKey=SearchBoxStyle}"
+                                 Watermark="Search Filters"
+                                 Grid.Row="1"
+                                 Grid.ColumnSpan="2"
+                                 Margin="0 0 0 0"
+                                 Height="25"
+                                 BorderThickness="1"
+                       
+                                 VerticalAlignment="Stretch"
+                                 Text="{Binding searchWord}"
+                                 TextChanged="WatermarkTextBox_TextChanged" SelectionBrush="#FFBC7B18" Background="White" BorderBrush="{DynamicResource MainLightGrey}"/>
+                            <Image Height="16" Margin="0 0 5 0"  Grid.Column="1"
+                              HorizontalAlignment="Right" Source="/AECSpot;component/Resources/Images/mag.png" />
+                        </Grid>
+
+
+
+
+                    </Border>
+                    <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                    <CheckBox
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        Style="{StaticResource MainCheckBoxThreeStates}" 
+                                        HorizontalContentAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        IsThreeState="True"
+                                        Content="Select All"
+                                        x:Name="CheckBoxAllFilter"
+                                        Foreground=" #BC7B18"
+                                        Margin="7 0 0 0"
+                                        Checked="CheckBox_Checked"
+                                        HorizontalAlignment="Stretch"
+                                        Unchecked="CheckBox_Unchecked" 
+                                        >
+
+
+                    </CheckBox>
+                            <TextBlock Grid.Column="1" 
+                                       x:Name="filtersSelectedTextBox"
+                                  
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                                       Foreground="LightGray"
+                                       Margin="0 0 5 0"
+                                       >
+                            
+                            </TextBlock>
+                        
+                       
+                    </Grid>
+
+
+                    <Border Grid.Row="3" x:Name="border" 
+                           
+                                Grid.ColumnSpan="2"
+                                HorizontalAlignment="Stretch"
+                                Background="Transparent">
+                        <ListView 
+                            Margin="7 0 0 0"
+                       
+                        
+                        SelectionMode="Extended"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Top"
+                                   
+                                      
+                                      Background="White"
+                                      BorderThickness="0"
+                                      x:Name="ViewFiltersList"
+                                      SelectionChanged="ViewFiltersList_SelectionChanged"
+                                      SelectedItem="{Binding SelectedFilter}"
+                                      ItemsSource="{Binding ViewFilters }">
+
+                            <ListView.Resources>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListViewItem">
+                                                <Border Background="White"
+                                                            BorderBrush="White"
+                                                        
+                                                            Margin="2"
+                                                            BorderThickness="1"
+                                                            Height="25"
+                                                            CornerRadius="3"
+                                                            Name="border">
+                                                    <StackPanel>
+                                                        <CheckBox Content="{Binding Name}" 
+                                                            IsChecked="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, 
+                                                                             Path=IsSelected,Mode=OneWay}"
+                                                                      
+                                                                      HorizontalAlignment="Stretch"
+                                                                   VerticalAlignment="Center"
+                                                                   HorizontalContentAlignment="Left"
+                                                                      VerticalContentAlignment="Center"
+                                                                   Style="{StaticResource MainCheckBox}"
+                                                                      IsEnabled="False"
+                                                                        Checked="textValue_Checked"
+                                                                   x:Name="textValue"
+                                                                   Foreground="#FF6B6B6B">
+
+                                                        </CheckBox>
+                                                        <!--  <TextBlock HorizontalAlignment="Center"
+                                                                   VerticalAlignment="Center"
+                                                                   TextAlignment="Center"
+                                                                   x:Name="textValue"
+                                                                   Foreground="#FF6B6B6B"
+                                                                   Text="{Binding Name}" /> -->
+                                                    </StackPanel>
+
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver"
+                                                                 Value="True">
+                                                        <Setter Property="Background"
+                                                                    TargetName="border"
+                                                                    Value="#E0E0E0" />
+                                                        <Setter Property="Foreground"
+                                                                    TargetName="textValue"
+                                                                    Value="black" />
+
+                                                    </Trigger>
+                                                    <!--<Trigger Property="IsSelected"
+                                                                 Value="True">
+                                                        <Setter Property="Background"
+                                                                    TargetName="border"
+                                                                    Value="#E5A063" />
+                                                        <Setter Property="Foreground"
+                                                                    TargetName="textValue"
+                                                                    Value="white" />
+                                                    </Trigger>-->
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListView.Resources>
+                        </ListView>
+
+                    </Border>
+                </Grid>
+            </Border>
+
+
+
+            <Border Grid.Column="2" Background="White" BorderThickness="0.5" BorderBrush="Gray">
+                <Grid Margin="10 10 10 0">
+
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"></RowDefinition>
+                        <RowDefinition Height="35"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0"
+                        Margin="5 0 0 0"
+                                 FontSize="18"
+                                 VerticalAlignment="Center" >Project Views</TextBlock>
+                    <Border 
+                       
+                       VerticalAlignment="Stretch"
+                       Height="30"
+                       Margin="5 0 0 0"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="2"
+                        >
+                   
+
+                        <Grid VerticalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <tk:WatermarkTextBox 
+                                 
+                                Margin="0 0 0 0"
+                                       Style="{StaticResource ResourceKey=SearchBoxStyle}"
+
+                                         Text="{Binding searchWordForProjectViews}"
+                                         Grid.Row="1"   
+                                          Grid.Column="0"
+                                               FontSize="10"
+                                         TextChanged="WatermarkTextBox_TextChanged_1"
+                                         HorizontalAlignment="Stretch"
+                                
+                                x:Name="watermarkTextBox1" 
+                                                
+                                 Watermark="Search views"
+                                 Grid.ColumnSpan="2"
+                                 
+                                 Height="25"
+                                 BorderThickness="1"
+                       
+                                 VerticalAlignment="Center"
+                                                 SelectionBrush="#FFBC7B18" 
+                                                 Background="White" 
+                                                 BorderBrush="{DynamicResource MainLightGrey}"/>
+                            <Image Height="16" Margin="0 0 5 0"  Grid.Column="1" VerticalAlignment="Stretch"
+                              HorizontalAlignment="Right" Source="/AECSpot;component/Resources/Images/mag.png" />
+                        </Grid>
+
+
+
+
+                    </Border>
+                    <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        Style="{StaticResource MainCheckBox}" 
+                                        HorizontalContentAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        
+                                        Content="Select All"
+                                        x:Name="CheckBoxAllCategories"
+                                        Foreground=" #BC7B18"
+                                        Margin="7 0 0 0"
+                                        Checked="CheckBoxAllCategories_Checked"
+                                        HorizontalAlignment="Stretch"
+                                        Unchecked="CheckBoxAllCategories_Unchecked" 
+                                        
+                                        >
+
+
+                        </CheckBox>
+                        <StackPanel Grid.Column="1" 
+                                    Orientation="Horizontal" 
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Margin="0 0 5 0">
+                            
+                            <TextBlock VerticalAlignment="Center" Foreground="LightGray" Text="( "></TextBlock>
+                        <TextBlock 
+                                       x:Name="CategoriessSelectedTextBox"
+                                  
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                                       Foreground="LightGray"
+                                       Margin="0 0 2 0"
+                                       >
+                           
+                                                        
+                        </TextBlock>
+                            <!--<TextBlock  Foreground="LightGray"
+ Text="{Binding Counter, Source={StaticResource treeViewElement},Mode=TwoWay}"></TextBlock>-->
+
+
+                            <TextBlock  Text=" items selected)"  Foreground="LightGray">
+                                             
+                              </TextBlock>
+                        </StackPanel>
+
+
+                    </Grid>
+
+                    <Border x:Name="border1" CornerRadius="15"
+                                    Grid.Row="3"
+                                     Grid.Column="2"
+                                Background="White" 
+                               HorizontalAlignment="Stretch"
+               >
+                        <TreeView x:Name="tree" 
+                      Background="Transparent"
+                      VerticalAlignment="Stretch"
+                      BorderThickness="0"
+                             
+                      ItemsSource="{Binding Root.Children}" 
+                      
+                                  
+
+                       >
+                            <TreeView.ItemContainerStyle>
+                                <Style TargetType="TreeViewItem">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsVisible}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TreeView.ItemContainerStyle>
+                            
+                            
+                        </TreeView>
+                    </Border>
+                </Grid>
+            </Border>
+
+
+            <!--<Button 
+                    Grid.Row="3"
+                    Grid.ColumnSpan="3"
+                    Click="CopyDataClicked"
+                        Margin="0 5 15 0"
+                        CommandParameter="Slow"
+                        Style="{StaticResource BlueButtonStyle}">Copy</Button>-->
+        </Grid>
+
+
+
+
+        <!-- Contact Area -->
+
+        <Border Background=" #E3E3E3" Grid.Row="2"  Height="80" VerticalAlignment="Center" HorizontalAlignment="Stretch" >
+
+            <Grid 
+              Margin="20 0 0 0" 
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Bottom" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320"></ColumnDefinition>
+                    <ColumnDefinition ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Vertical">
+                    <Image Width="45" Height="45" HorizontalAlignment="Left" Source="/AECSpot;component/Resources/AEC Spot Logo 2.png" />
+
+                    <StackPanel Margin="0 0 0 8"  Orientation="Horizontal">
+
+
+                        <!--<Button BorderThickness="0"  Height="25" Click="Button_Click" Background="Transparent">
+                    <Button.Content>
+                            <Border   VerticalAlignment="Center" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                        <StackPanel Orientation="Horizontal">
+
+                                <TextBlock TextDecorations="Underline"  VerticalAlignment="Center"  Background="Transparent">
+                                    aecspot.com</TextBlock>
+                            <Image Source="/AECSpot;component/Resources/Images/square-arrow-up-right-02.png" />
+
+                        </StackPanel>
+                            </Border>
+                    </Button.Content>
+
+                
+            </Button>-->
+                        <Button Style="{StaticResource ContactrButton}" 
+                        Click="Button_Click"
+                        Margin="0 0 15 0">
+
+                            aecspot.com
+
+
+
+                        </Button>
+                        <Button Margin="0 0 15 0" Style="{StaticResource ContactrButton}" Click="Button_Click_1">
+                            Find Models
+                        </Button>
+                        <Button Style="{StaticResource ContactrButton}" Click="Button_Click_2">
+                            more plugins
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 50 0" >
+                    <Button 
+                    Click="CopyDataClicked"
+                        CommandParameter="Slow"
+                        Style="{StaticResource BlueButtonStyle}">Copy</Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+
+</Window>

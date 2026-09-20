@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ApplicationPackage SchemaVersion="1.0" AutodeskProduct="Revit" Name="FilterManager" Description="It helps you manage your project sheets easily in a smart way." AppVersion="1.0.0" FriendlyVersion="1.0.0" ProductType="Application" SupportedLocales="Enu" Author="AEC Spot" ProductCode="{2E65F645-9617-4EC6-B171-6004634654A3}" UpgradeCode="{2E65F645-9617-4EC6-B171-6004634654A3}">
+  <CompanyDetails Name="AEC Spot" />
+  <RuntimeRequirements OS="Win64" Platform="Revit" SeriesMin="R2024" SeriesMax="R2024" />
+  <Components Description="2024">
+    <RuntimeRequirements OS="Win64" Platform="Revit" SeriesMin="R2024" SeriesMax="R2024" />
+    <ComponentEntry AppName="FilterManager" Version="1.0.0" ModuleName="./Contents/2024/FilterManager.addin" AppDescription="AECSpot" />
+  </Components>
+</ApplicationPackage>

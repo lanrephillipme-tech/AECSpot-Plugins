@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+
+	
+		
+		<Name>PeopleFilter</Name>
+		<Text>People Filter</Text>
+		<Assembly>PeopleFilter.dll</Assembly>
+
+		<AddInId>
+			663D4F53-7AE5-4A0D-B9CC-EF247EDD8263
+		</AddInId>
+		<FullClassName>PeopleFilter.PeopleFilterApplication</FullClassName>
+		<ClientId>F4BC8DB5-D217-445B-BA8B-A6A5EEE9BEC3</ClientId>
+		<VendorId>www.AECSpot.com</VendorId>
+		<VendorDescription>www.AECSpot.com</VendorDescription>
+	</AddIn>
+</RevitAddIns>

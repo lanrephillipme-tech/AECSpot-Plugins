@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+
+	
+		
+		<Name>CopyFilter</Name>
+		<Text>Copy Filter</Text>
+		<Assembly>CopyFilter.dll</Assembly>
+
+		<AddInId>
+			E8BC40BF-06E2-48FE-8E3F-D486C4DEA8BA
+		</AddInId>
+		<FullClassName>CopyFilter.CopyFilterApplication</FullClassName>
+		<ClientId>68B9750F-1302-4DB1-A67A-361BEE2BF1B8</ClientId>
+		<VendorId>www.AECSpot.com</VendorId>
+		<VendorDescription>www.AECSpot.com</VendorDescription>
+	</AddIn>
+</RevitAddIns>

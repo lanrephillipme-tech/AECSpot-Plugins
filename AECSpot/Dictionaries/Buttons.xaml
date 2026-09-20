@@ -1,0 +1,936 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary  Source="pack://application:,,,/AECSpot;component/Dictionaries/Fonts.xaml"></ResourceDictionary>
+        <ResourceDictionary  Source="pack://application:,,,/AECSpot;component/Dictionaries/Colors.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--Titlebar Buttons-->
+    <Style TargetType="Button"
+           x:Key="TitlebarButton">
+
+        <Setter Property="Height"
+                Value="20"></Setter>
+        <Setter Property="Width"
+                Value="20"></Setter>
+        <Setter Property="Background"
+         Value="#E3E3E3"></Setter>
+        <Setter Property="BorderThickness"
+                Value="0"></Setter>
+        <Setter Property="VerticalAlignment"
+                Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment"
+                Value="Center"></Setter>
+        <Setter Property="Cursor" Value="Hand"/>
+        <!--Template Style-->
+        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ButtonBorder"
+                            Background="{TemplateBinding Background}"
+                            IsHitTestVisible="True"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4">
+                        <Image HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                               Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag}">
+                        </Image>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--Triggers Style-->
+        
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+               
+        <!--BackGround Effect-->
+       
+                <Setter Property="Background"
+                        Value="Gray" />
+               
+     
+        
+            </Trigger>
+            
+        </Style.Triggers>
+    </Style>
+
+
+
+    <!--Contact Buttons-->
+    <Style TargetType="Button"
+           x:Key="ContactrButton">
+
+        <Setter Property="Height"
+                Value="25"></Setter>
+        <Setter Property="Background"
+         Value="Transparent"></Setter>
+        <Setter Property="BorderThickness"
+                Value="0"></Setter>
+        <Setter Property="VerticalAlignment"
+                Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment"
+                Value="Center"></Setter>
+        <Setter Property="Cursor" Value="Hand"/>
+        <!--Template Style-->
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ButtonBorder"
+                            Background="{TemplateBinding Background}"
+                            IsHitTestVisible="True"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   x:Name="textValue"
+                                   TextDecorations="Underline"
+                                       Margin="0 0 2 0"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   Text="{Binding RelativeSource={RelativeSource AncestorType=Button }, Path=Content}">
+                            </TextBlock>
+                            <Image HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Source="/AECSpot;component/Resources/Images/square-arrow-up-right-02.png"  >
+                        </Image>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!-- Trigger to change text color when mouse is over -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="textValue" Property="Foreground" Value="#BC7B18"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--Triggers Style-->
+
+
+    </Style>
+
+
+
+    
+    
+    
+    
+    <!--Base Button Style-->
+    <Style TargetType="Button"
+           x:Key="BaseButtonStyle">
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="Width"
+                Value="100"></Setter>
+        <Setter Property="Height"
+                Value="40"></Setter>
+        <Setter Property="Margin"
+                Value="10"></Setter>
+        <Setter Property="Background"
+                Value="{StaticResource MainWhite}"></Setter>
+        <Setter Property="Foreground"
+                Value="{StaticResource MainBlue}"></Setter>
+        <Setter Property="BorderThickness"
+                Value="0"></Setter>
+        <!--Template Style-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ButtonBorder"
+                            Background="{TemplateBinding Background}"
+                            IsHitTestVisible="True"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4">
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   IsHitTestVisible="False"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   Text="{Binding RelativeSource={RelativeSource AncestorType=Button }, Path=Content}">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--Triggers Style-->
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <!--BackGround Effect-->
+                <Setter Property="Background"
+                        Value="{StaticResource MouseOverLightBlue}" />
+                <!--DropShadow-->
+                <!--#region Border Style -->
+                <!--BorderBrush-->
+                <Setter Property="BorderThickness"
+                        Value="1"></Setter>
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource MainGreen}"></Setter>
+                <!--#endregion-->
+            </Trigger>
+            <Trigger Property="IsEnabled"
+                     Value="False">
+
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="Foreground"
+                        Value="{StaticResource MainRed}" />
+                <Setter Property="BorderThickness"
+                        Value="1"></Setter>
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource MainRed}"></Setter>
+                <!--<Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="0"
+                                          ShadowDepth="0"
+                                          Color="Transparent"
+                                          Direction="0">
+                        </DropShadowEffect>
+                    </Setter.Value>
+                </Setter>-->
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--Main Button Style--><!--
+    <Style BasedOn="{StaticResource BaseButtonStyle }"
+           TargetType="Button" />
+    -->
+    <!--Blue Button Style-->
+    
+    <Style TargetType="Button"
+           BasedOn="{StaticResource BaseButtonStyle}"
+           x:Key="BlueButtonStyle">
+        <Setter Property="Width"
+                Value="100"></Setter>
+        <Setter Property="Height"
+                Value="40"></Setter>
+        <Setter Property="Margin"
+                Value="10"></Setter>
+        <Setter Property="Foreground"
+                Value="{StaticResource MainWhite}"></Setter>
+        <Setter Property="Background"
+                Value=" #BC7B18"></Setter>
+        <Setter Property="BorderThickness"
+                Value="0"></Setter>
+        
+        <!--Template Style-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ButtonBorder"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4">
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   Text="{Binding RelativeSource={RelativeSource AncestorType=Button }, Path=Content}">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--Triggers Style-->
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <!--BackGround Effect-->
+                <Setter Property="Background"
+                        Value="#9B6411" />
+                <!--DropShadow-->
+                <!--<Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="10"
+                                          ShadowDepth="0"
+                                          Color="{StaticResource  MainLightGreyColor }"
+                                          Direction="0">
+                        </DropShadowEffect>
+                    </Setter.Value>
+                </Setter>-->
+                <!--#region Border Style -->
+                <!--BorderBrush-->
+                <!--<Setter Property="BorderThickness"
+                        Value="1"></Setter>
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource MainGreen}"></Setter>-->
+                <!--#endregion-->
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Button"
+           BasedOn="{StaticResource BaseButtonStyle}"
+           x:Key="LightButtonStyle">
+        <Setter Property="Width"
+                Value="100"></Setter>
+        <Setter Property="Height"
+                Value="40"></Setter>
+        <Setter Property="Margin"
+                Value="10"></Setter>
+        <Setter Property="Foreground"
+                Value="#BC7B18"></Setter>
+        <Setter Property="Background"
+                Value="Transparent"></Setter>
+        <Setter Property="BorderThickness"
+                Value="2"></Setter>  
+        <Setter Property="BorderBrush"
+                Value="#BC7B18"></Setter>
+
+        <!--Template Style-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ButtonBorder"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4">
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   Text="{Binding RelativeSource={RelativeSource AncestorType=Button }, Path=Content}">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--Triggers Style-->
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <!--BackGround Effect-->
+                <Setter Property="Background"
+                        Value="#9B6411" />
+                <!--DropShadow-->
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="10"
+                                          ShadowDepth="0"
+                                          Color="{StaticResource  MainLightGreyColor }"
+                                          Direction="0">
+                        </DropShadowEffect>
+                    </Setter.Value>
+                </Setter>
+                <!--#region Border Style -->
+                <!--BorderBrush-->
+                <!--<Setter Property="BorderThickness"
+                        Value="1"></Setter>
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource MainGreen}"></Setter>-->
+                <!--#endregion-->
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Button"
+        BasedOn="{StaticResource BaseButtonStyle}"
+        x:Key="BaleButtonStyle">
+        <Setter Property="Width"
+             Value="100"></Setter>
+        <Setter Property="Height"
+             Value="40"></Setter>
+        <Setter Property="Margin"
+             Value="5"></Setter>
+        <Setter Property="Foreground"
+             Value="#BC7B18"></Setter>
+        <Setter Property="Background"
+             Value="Transparent"></Setter>
+        <Setter Property="BorderThickness"
+             Value="2"></Setter>
+        <Setter Property="BorderBrush"
+             Value="#BC7B18"></Setter>
+
+        <!--Template Style-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ButtonBorder"
+                         Background="{TemplateBinding Background}"
+                         BorderBrush="{TemplateBinding BorderBrush}"
+                         BorderThickness="{TemplateBinding BorderThickness}"
+                         CornerRadius="4">
+                        <TextBlock HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="{TemplateBinding Foreground}"
+                                Text="{Binding RelativeSource={RelativeSource AncestorType=Button }, Path=Content}">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--Triggers Style-->
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                  Value="True">
+                <!--BackGround Effect-->
+                <Setter Property="Background"
+                     Value="#9B6411" />
+                <!--DropShadow-->
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="10"
+                                       ShadowDepth="0"
+                                       Color="{StaticResource  MainLightGreyColor }"
+                                       Direction="0">
+                        </DropShadowEffect>
+                    </Setter.Value>
+                </Setter>
+                <!--#region Border Style -->
+                <!--BorderBrush-->
+                <!--<Setter Property="BorderThickness"
+                     Value="1"></Setter>
+             <Setter Property="BorderBrush"
+                     Value="{StaticResource MainGreen}"></Setter>-->
+                <!--#endregion-->
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background"
+           Value="Transparent" />
+                <Setter Property="Foreground"
+           Value="Black" />
+                <Setter Property="BorderThickness"
+           Value="1"></Setter>
+                <Setter Property="BorderBrush"
+           Value="Black"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--Main System Commands Style--><!--
+    <Style BasedOn="{StaticResource BaseButtonStyle }"
+           TargetType="Button"
+           x:Key="SystemButton">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                --><!--BackGround Effect--><!--
+                <Setter Property="Background"
+                        Value="{StaticResource MainBlue}" />
+                <Setter Property="Foreground"
+                        Value="{StaticResource MainWhite}" />
+
+                --><!--DropShadow--><!--
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="0"
+                                          ShadowDepth="0"
+                                          Color="{StaticResource  MainWhiteColor }"
+                                          Direction="0">
+                        </DropShadowEffect>
+                    </Setter.Value>
+                </Setter>
+                --><!--#region Border Style -->
+                <!--BorderBrush--><!--
+                <Setter Property="BorderThickness"
+                        Value="0"></Setter>
+                --><!--#endregion--><!--
+            </Trigger>
+        </Style.Triggers>
+    </Style>-->
+    <!--Main System Close Commands Style--><!--
+    <Style BasedOn="{StaticResource SystemButton }"
+           TargetType="Button"
+           x:Key="SystemRedButton">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                --><!--BackGround Effect--><!--
+                <Setter Property="Background"
+                        Value="{StaticResource MainRed}" />
+                <Setter Property="Foreground"
+                        Value="{StaticResource MainWhite}" />
+
+                --><!--DropShadow--><!--
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="0"
+                                          ShadowDepth="0"
+                                          Color="{StaticResource  MainWhiteColor }"
+                                          Direction="0">
+                        </DropShadowEffect>
+                    </Setter.Value>
+                </Setter>
+                --><!--#region Border Style -->
+                <!--BorderBrush--><!--
+                <Setter Property="BorderThickness"
+                        Value="0"></Setter>
+                --><!--#endregion--><!--
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    --><!--Red Button Style--><!--
+    <Style BasedOn="{StaticResource BaseButtonStyle }"
+           TargetType="Button"
+           x:Key="RedButtonsStyle">
+        <Setter Property="Background"
+                Value="{StaticResource MainRed}" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                --><!--BackGround Effect--><!--
+                <Setter Property="Background"
+                        Value="{StaticResource MouseOverLightRed}" />
+                --><!--DropShadow--><!--
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="10"
+                                          ShadowDepth="0"
+                                          Color="{StaticResource  MainLightGreyColor }"
+                                          Direction="0">
+                        </DropShadowEffect>
+                    </Setter.Value>
+                </Setter>
+                --><!--#region Border Style -->
+                <!--BorderBrush--><!--
+                <Setter Property="BorderThickness"
+                        Value="1"></Setter>
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource MainRed}"></Setter>
+                --><!--#endregion--><!--
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    --><!--White Blue Button Style--><!--
+    <Style BasedOn="{StaticResource BaseButtonStyle}"
+           TargetType="Button"
+           x:Key="WhiteButtonsStyle">
+        <Setter Property="Background"
+                Value="{StaticResource MainWhite}" />
+        <Setter Property="Foreground"
+                Value="{StaticResource MainBlue}" />
+        <Setter Property="BorderBrush"
+                Value="{StaticResource MainBlue}" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ButtonBorders"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            CornerRadius="4">
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   x:Name="textValue"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   Text="{Binding RelativeSource={RelativeSource AncestorType=Button }, Path=Content}">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="10"
+                                  ShadowDepth="0"
+                                  Color="{StaticResource   MainLightGreyColor }"
+                                  Direction="0">
+                </DropShadowEffect>
+            </Setter.Value>
+        </Setter>
+        --><!--Style Triggers--><!--
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                --><!--BackGround Effect--><!--
+                <Setter Property="Background"
+                        Value="{StaticResource MainWhite}" />
+                --><!--DropShadow-->
+
+                <!--#region Border Style -->
+                <!--BorderBrush--><!--
+                <Setter Property="BorderThickness"
+                        Value="0.1"></Setter>
+                --><!--#endregion--><!--
+            </Trigger>
+            <Trigger Property="IsEnabled"
+                     Value="False">
+
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="Foreground"
+                        Value="{StaticResource MainRed}" />
+                <Setter Property="BorderThickness"
+                        Value="1"></Setter>
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource MainRed}"></Setter>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="0"
+                                          ShadowDepth="0"
+                                          Color="Transparent"
+                                          Direction="0">
+                        </DropShadowEffect>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    --><!--Activity Button Style with text--><!--
+    <Style TargetType="Button"
+           x:Key="btn_ModelActivityButtonStyle">
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Margin="15 0 15 0"
+                            BorderThickness="1"
+                            CornerRadius="5"
+                            BorderBrush="{StaticResource MainLightGrey}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        TextAlignment="Center"
+                                        Grid.Column="0"
+                                        Margin="15 0 0 0"
+                                        Text="{Binding RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor }, Path=Tag}"
+                                        Foreground="{StaticResource MainDarkGrey}"></TextBlock>
+                            <Button  HorizontalAlignment="Right"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     Width="80"
+                                     Height="30"
+                                     Margin="0 5 15 5"
+                                     Command="{TemplateBinding Command}"
+                                     CommandParameter="{TemplateBinding CommandParameter}"
+                                     Style="{StaticResource BlueButtonStyle}"
+                                     Content="{TemplateBinding Content }"
+                                     Grid.Column="1"></Button>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    --><!--Edit Family  Button Style with text--><!--
+    <Style TargetType="Button"
+           x:Key="EditFamilyButtonStyle">
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid IsHitTestVisible="True">
+                        <Border Margin="15 0 15 0"
+                                BorderThickness="0"
+                                CornerRadius="5"
+                                x:Name="Border"
+                                BorderBrush="{StaticResource MainBlue}"
+                                Background="{TemplateBinding Background}">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="10"
+                                                  ShadowDepth="0"
+                                                  Opacity="0.6"
+                                                  Color="{StaticResource   MainLightGreyColor }"
+                                                  Direction="0">
+                                </DropShadowEffect>
+                            </Border.Effect>
+                        </Border>
+                        <Border Margin="15 0 15 0"
+                                BorderThickness="1"
+                                CornerRadius="5"
+                                IsHitTestVisible="False"
+                                BorderBrush="Transparent">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock  HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            TextAlignment="Center"
+                                            Grid.Column="0"
+                                            IsHitTestVisible="False"
+                                            Margin="15 0 0 0"
+                                            Text="{Binding RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor }, Path=Tag}"
+                                            Foreground="{TemplateBinding Foreground}"></TextBlock>
+                                <Button  HorizontalAlignment="Right"
+                                         VerticalAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                         Width="80"
+                                         Height="30"
+                                         IsHitTestVisible="False"
+                                         Command="{TemplateBinding Command}"
+                                         Style="{StaticResource BlueButtonStyle}"
+                                         Background="Transparent"
+                                         Foreground="{TemplateBinding Foreground}"
+                                         Content="{TemplateBinding Content }"
+                                         Grid.Column="1"></Button>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter Property="BorderThickness"
+                                    TargetName="Border"
+                                    Value="2" />
+
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    --><!--Add Button Style with text--><!--
+    <Style TargetType="Button"
+           x:Key="AddButton">
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="Background"
+                Value="{StaticResource MainWhite}" />
+        <Setter Property="Foreground"
+                Value="{StaticResource MainGreen}" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="Margin"
+                Value="0" />
+        <Setter Property="Padding"
+                Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border Name="Border"
+                                CornerRadius="3"
+                                Background="{TemplateBinding Background}">
+                            <Border.Effect>
+                                <DropShadowEffect Direction="0"
+                                                  ShadowDepth="0"
+                                                  Color="{StaticResource MainLightGreyColor}"></DropShadowEffect>
+                            </Border.Effect>
+                        </Border>
+                        <Border CornerRadius="3"
+                                Background="Transparent">
+
+                            <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}, Path=Content}"
+                                       Background="Transparent"
+                                       x:Name="ButtonValuePresenter"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       TextAlignment="Center"
+                                       Foreground="{TemplateBinding Foreground}"></TextBlock>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    TargetName="Border"
+                                    Value="{StaticResource MouseOverLightBlue }"></Setter>
+                            <Setter Property="Foreground"
+                                    TargetName="ButtonValuePresenter"
+                                    Value="{StaticResource MainWhite}"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    --><!--Popup Menu Button Style --><!--
+    <Style TargetType="Button"
+           x:Key="PopupMenuButton">
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="Background"
+                Value="{StaticResource MainWhite}" />
+        <Setter Property="Foreground"
+                Value="{StaticResource MainDarkGrey}" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="Margin"
+                Value="0 5 0 5" />
+        <Setter Property="Padding"
+                Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid   Width="{TemplateBinding Width}"
+                            Height="100">
+                        <Border CornerRadius="2"
+                                x:Name="Border"
+                                Width="{TemplateBinding Width}"
+                                Height="100"
+                                Background="{TemplateBinding Background}">
+
+                            <StackPanel Orientation="Horizontal">
+                                <Path Fill="{TemplateBinding Foreground}"
+                                      Data="{Binding RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}, Path=Tag}" />
+                                <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}, Path=Content}"
+                                           Background="Transparent"
+                                           x:Name="ButtonValuePresenter"
+                                           Margin="10 2 0 2"
+                                           HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Stretch"
+                                           TextAlignment="Center"
+                                           Foreground="{TemplateBinding Foreground}"></TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    TargetName="Border"
+                                    Value="{StaticResource MainGreen}"></Setter>
+                            <Setter Property="Foreground"
+                                    TargetName="ButtonValuePresenter"
+                                    Value="{StaticResource MainWhite}"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    --><!--Text Button Style --><!--
+    <Style BasedOn="{StaticResource BaseButtonStyle}"
+           TargetType="Button"
+           x:Key="TextButton">
+        <Setter Property="Background"
+                Value="{StaticResource MainWhite}" />
+        <Setter Property="Foreground"
+                Value="{StaticResource MainBlue}" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <TextBlock HorizontalAlignment="Center"
+                               x:Name="ButtonText"
+                               VerticalAlignment="Center"
+                               Foreground="{TemplateBinding Foreground}"
+                               Text="{Binding RelativeSource={RelativeSource AncestorType=Button }, Path=Content}">
+                    </TextBlock>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter Property="Foreground"
+                                    TargetName="ButtonText"
+                                    Value="{StaticResource MouseOverLightBlue}" />
+                            <Setter Property="BorderThickness"
+                                    Value="0.1"></Setter>
+                            <Setter Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect BlurRadius="0"
+                                                      Direction="0"
+                                                      Opacity="0"
+                                                      ShadowDepth="0"
+                                                      Color="{StaticResource MainWhiteColor}">
+                                    </DropShadowEffect>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="0"
+                                          Direction="0"
+                                          Opacity="0"
+                                          ShadowDepth="0"
+                                          Color="{StaticResource MainWhiteColor}">
+                        </DropShadowEffect>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style BasedOn="{StaticResource BaseButtonStyle}"
+           TargetType="Button"
+           x:Key="ImageTextButton">
+        <Setter Property="Background"
+                Value="{StaticResource MainWhite}" />
+        <Setter Property="Foreground"
+                Value="{StaticResource MainBlue}" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border IsHitTestVisible="True"
+                            Background="Transparent">
+                        <StackPanel Orientation="Horizontal"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Center">
+                            <Path Fill="{TemplateBinding Foreground}"
+                                  Width="18"
+                                  Stretch="Uniform"
+                                  Data="{Binding RelativeSource={RelativeSource AncestorType=Button }, Path=Tag}" />
+                            <TextBlock HorizontalAlignment="Center"
+                                       x:Name="ButtonText"
+                                       Margin="15 0 15 0"
+                                       VerticalAlignment="Center"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       Text="{Binding RelativeSource={RelativeSource AncestorType=Button }, Path=Content}">
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter Property="Foreground"
+                                    TargetName="ButtonText"
+                                    Value="{StaticResource MouseOverLightBlue}" />
+                            <Setter Property="BorderThickness"
+                                    Value="0.1"></Setter>
+                            <Setter Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect BlurRadius="0"
+                                                      Direction="0"
+                                                      Opacity="0"
+                                                      ShadowDepth="0"
+                                                      Color="{StaticResource MainWhiteColor}">
+                                    </DropShadowEffect>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="0"
+                                          Direction="0"
+                                          Opacity="0"
+                                          ShadowDepth="0"
+                                          Color="{StaticResource MainWhiteColor}">
+                        </DropShadowEffect>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+-->
+</ResourceDictionary>

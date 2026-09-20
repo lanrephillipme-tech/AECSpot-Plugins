@@ -1,0 +1,65 @@
+﻿<Window x:Class="AECSpot.DuplicateFiltersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        Title="AEC Spot - Duplicate Filters"
+        Width="920" Height="620" MinWidth="720" MinHeight="480"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="CanResize"
+        Background="#F7F7F7">
+    <WindowChrome.WindowChrome><WindowChrome CaptionHeight="0" ResizeBorderThickness="5" /></WindowChrome.WindowChrome>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/AECSpot;component/Dictionaries/ApplicationDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions><RowDefinition Height="42" /><RowDefinition Height="*" /><RowDefinition Height="58" /></Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="{StaticResource MainBlue}" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+            <Grid Margin="14,0,8,0"><TextBlock Text="Duplicate Filters" Foreground="White" FontSize="15" VerticalAlignment="Center" /><Button HorizontalAlignment="Right" Style="{StaticResource TextButton}" Content="Close" Foreground="White" Click="CloseButton_Click" /></Grid>
+        </Border>
+        <Grid Grid.Row="1" Margin="16">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="290" /><ColumnDefinition Width="16" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+            <Border Grid.Column="0" BorderBrush="{StaticResource MainLightGrey}" BorderThickness="1" CornerRadius="4" Padding="10">
+                <Grid>
+                    <ListBox ItemsSource="{Binding DuplicateGroups}" SelectedItem="{Binding SelectedGroup, Mode=TwoWay}" BorderThickness="0">
+                        <ListBox.ItemTemplate><DataTemplate><StackPanel Margin="4"><TextBlock Text="{Binding GroupName}" FontWeight="SemiBold" /><TextBlock Text="{Binding CategoriesSummary}" Foreground="{StaticResource MainDarkGrey}" FontSize="11" TextTrimming="CharacterEllipsis" /></StackPanel></DataTemplate></ListBox.ItemTemplate>
+                    </ListBox>
+                    <TextBlock Text="No parameter filters found in this project." Foreground="{StaticResource MainDarkGrey}" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Visibility" Value="Collapsed" /><Style.Triggers><DataTrigger Binding="{Binding HasFilters}" Value="False"><Setter Property="Visibility" Value="Visible" /></DataTrigger></Style.Triggers></Style></TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock Text="No duplicate filter definitions found." Foreground="{StaticResource MainDarkGrey}" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Visibility" Value="Collapsed" /><Style.Triggers><MultiDataTrigger><MultiDataTrigger.Conditions><Condition Binding="{Binding HasFilters}" Value="True" /><Condition Binding="{Binding HasDuplicateGroups}" Value="False" /></MultiDataTrigger.Conditions><Setter Property="Visibility" Value="Visible" /></MultiDataTrigger></Style.Triggers></Style></TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+            </Border>
+            <Border Grid.Column="2" BorderBrush="{StaticResource MainLightGrey}" BorderThickness="1" CornerRadius="4" Padding="18">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel DataContext="{Binding SelectedGroup}">
+                    <TextBlock Text="Duplicate Definition" FontSize="17" FontWeight="SemiBold" Foreground="{StaticResource MainDarkGrey}" />
+                    <TextBlock Text="{Binding DefinitionSummary}" Margin="0,6,0,4" TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding CategoriesSummary}" Foreground="{StaticResource MainDarkGrey}" Margin="0,0,0,16" TextWrapping="Wrap" />
+                    <ItemsControl ItemsSource="{Binding Filters}"><ItemsControl.ItemTemplate><DataTemplate>
+                        <Border BorderBrush="{StaticResource MainLightGrey}" BorderThickness="0,0,0,1" Padding="0,8"><StackPanel>
+                            <TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="14" />
+                            <TextBlock Text="{Binding UsageSummary}" Foreground="{StaticResource MainDarkGrey}" />
+                            <TextBlock Text="{Binding CategoriesSummary}" Foreground="{StaticResource MainDarkGrey}" FontSize="11" TextWrapping="Wrap" />
+                            <TextBlock Text="Project views" Foreground="{StaticResource MainDarkGrey}" FontSize="11" FontWeight="SemiBold" Margin="0,5,0,0" />
+                            <ItemsControl ItemsSource="{Binding ViewUsages}"><ItemsControl.ItemTemplate><DataTemplate><TextBlock Text="{Binding ViewName}" Foreground="{StaticResource MainDarkGrey}" FontSize="11" Margin="8,1,0,0" /></DataTemplate></ItemsControl.ItemTemplate></ItemsControl>
+                            <TextBlock Text="View templates" Foreground="{StaticResource MainDarkGrey}" FontSize="11" FontWeight="SemiBold" Margin="0,5,0,0" />
+                            <ItemsControl ItemsSource="{Binding TemplateUsages}"><ItemsControl.ItemTemplate><DataTemplate><TextBlock Text="{Binding ViewName}" Foreground="{StaticResource MainDarkGrey}" FontSize="11" Margin="8,1,0,0" /></DataTemplate></ItemsControl.ItemTemplate></ItemsControl>
+                        </StackPanel></Border>
+                    </DataTemplate></ItemsControl.ItemTemplate></ItemsControl>
+                    <TextBlock Text="Unresolved comparisons" FontWeight="SemiBold" Foreground="{StaticResource MainDarkGrey}" Margin="0,20,0,4">
+                        <TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Visibility" Value="Collapsed" /><Style.Triggers><DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.HasIndeterminateFilters}" Value="True"><Setter Property="Visibility" Value="Visible" /></DataTrigger></Style.Triggers></Style></TextBlock.Style>
+                    </TextBlock>
+                    <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.IndeterminateFilters}"><ItemsControl.ItemTemplate><DataTemplate><TextBlock Margin="0,2" TextWrapping="Wrap"><Run Text="{Binding Filter.Name}" FontWeight="SemiBold" /><Run Text=": " /><Run Text="{Binding Detail}" /></TextBlock></DataTemplate></ItemsControl.ItemTemplate></ItemsControl>
+                </StackPanel></ScrollViewer>
+            </Border>
+        </Grid>
+        <Border Grid.Row="2" Background="{StaticResource MainSoftLightGrey}"><Button Content="Close" Style="{StaticResource BlueButtonStyle}" HorizontalAlignment="Right" Margin="0,8,16,8" Click="CloseButton_Click" /></Border>
+    </Grid>
+</Window>
+

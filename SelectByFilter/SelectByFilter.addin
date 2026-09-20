@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+
+	
+		
+		<Name>SelectByFilter</Name>
+		<Text>Select By Filter</Text>
+		<Assembly>SelectByFilter.dll</Assembly>
+
+		<AddInId>
+			D0A77365-44B2-46B5-9D65-A59DAB77CDE4
+		</AddInId>
+		<FullClassName>SelectByFilter.SelectByFilterApplication</FullClassName>
+		<ClientId>AD84810E-739E-4469-BA43-C10A2E8A169F</ClientId>
+		<VendorId>www.AECSpot.com</VendorId>
+		<VendorDescription>www.AECSpot.com</VendorDescription>
+	</AddIn>
+</RevitAddIns>

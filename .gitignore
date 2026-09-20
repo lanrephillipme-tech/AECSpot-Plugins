@@ -1,0 +1,18 @@
+# Build outputs and local tooling
+[Bb]in/
+[Oo]bj/
+.vs/
+packages/
+*.user
+*.pdb
+*.msi
+*.exe
+*.dll
+*.backup
+# Local Revit API references and test artifacts
+RevitAPI/
+Builds/
+Logs/
+# Generated installer output
+FilterManagerInstaller/installer-build-output.txt
+ElementOverrideSetup2023/Debug/

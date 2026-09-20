@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary  Source="pack://application:,,,/AECSpot;component/Dictionaries/CheckBox.xaml"></ResourceDictionary>
+        <ResourceDictionary  Source="pack://application:,,,/AECSpot;component/Dictionaries/Buttons.xaml"></ResourceDictionary>       
+        <ResourceDictionary  Source="pack://application:,,,/AECSpot;component/Dictionaries/SearchBox.xaml"></ResourceDictionary>
+        <ResourceDictionary  Source="pack://application:,,,/AECSpot;component/Dictionaries/Fonts.xaml"></ResourceDictionary>
+        <ResourceDictionary  Source="pack://application:,,,/AECSpot;component/Dictionaries/GrayComboBox.xaml"></ResourceDictionary>
+        <ResourceDictionary  Source="pack://application:,,,/AECSpot;component/Dictionaries/Colors.xaml"></ResourceDictionary>
+        <ResourceDictionary  Source="pack://application:,,,/AECSpot;component/Dictionaries/TreeView.xaml"></ResourceDictionary>
+        <ResourceDictionary  Source="pack://application:,,,/AECSpot;component/Dictionaries/Expander.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

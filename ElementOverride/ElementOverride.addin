@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+
+	
+		
+		<Name>ElementOverride</Name>
+		<Text>Element Overrider</Text>
+		<Assembly>ElementOverride.dll</Assembly>
+
+		<AddInId>
+			D7B84A73-EC16-4844-BF27-BCB65067B961
+		</AddInId>
+		<FullClassName>ElementOverride.ElementOverrideApplication</FullClassName>
+		<ClientId>2604A44D-99DB-40B7-BB28-62D0533CB47E</ClientId>
+		<VendorId>www.AECSpot.com</VendorId>
+		<VendorDescription>www.AECSpot.com</VendorDescription>
+	</AddIn>
+</RevitAddIns>
