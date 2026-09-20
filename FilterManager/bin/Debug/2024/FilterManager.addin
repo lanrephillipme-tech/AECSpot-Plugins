@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+
+	
+		
+		<Name>FilterManager</Name>
+		<Text>Filter Manager</Text>
+		<Assembly>FilterManager.dll</Assembly>
+
+		<AddInId>
+			BEB691DD-554E-48F2-A0D5-1900F31A7100
+		</AddInId>
+		<FullClassName>FilterManager.FilterManagerApplication</FullClassName>
+		<ClientId>24227EA2-84D7-4A38-9DE4-BCDA51F5B4E5</ClientId>
+		<VendorId>www.AECSpot.com</VendorId>
+		<VendorDescription>www.AECSpot.com</VendorDescription>
+	</AddIn>
+</RevitAddIns>
